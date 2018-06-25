@@ -20,6 +20,8 @@
 <li>{{$plan->display_name}}: {{$plan->amount}} {{$plan->currency}}
     <form action="/pay" method="post">               
       <input type="text" name="plan_name" value="{{$plan->name}}" /> 
+      <input type="text" class="text" value="paypal_ec" name="gateway_name"/>
+      <input type="text" class="text" value="1" name="onetime"/>
       <input type="submit" value="Submit" />
     </form>  
 </li>
@@ -28,7 +30,7 @@
 
 <ul>
 @foreach ($payments as $payment)
-<li>{{$payment->number}} : {{$payment->amount}} , {{$payment->status}}, <form action="/payments/{{$payment->number}}/refund_request" method="POST">{{ method_field('PUT') }}<input type="submit" value="退款"/></form></li>
+<li>{{$payment->subscription->agreement_id}} <span class="text-primary">{{$payment->number}}</span> : {{$payment->amount}} , {{$payment->status}}, <form action="/payments/{{$payment->number}}/refund_request" method="POST">{{ method_field('PUT') }}<input type="submit" value="退款" class="btn btn-default" /></form></li>
 @endforeach
 </li>
 

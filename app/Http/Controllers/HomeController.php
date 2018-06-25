@@ -38,7 +38,7 @@ class HomeController extends Controller
     public function index()
     {
         $plans = \Pheye\Payments\Models\Plan::all();
-        $payments = Auth()->user()->payments;
+        $payments = Auth()->user()->payments()->orderBy('created_at', 'desc')->get();
         return view('home')->with(['plans' => $plans, 'payments' => $payments]);
     }
 
