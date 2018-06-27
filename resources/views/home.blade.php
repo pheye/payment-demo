@@ -28,12 +28,35 @@
 @endforeach
 </ul>
 
-<ul>
+<table class="table table-striped">
+<tr>
+<th>订阅</th>
+<th>订单</th>
+<th>价格</th>
+<th>状态</th>
+<th>操作</th>
+</tr>
 @foreach ($payments as $payment)
-<li>{{$payment->subscription->agreement_id}} <span class="text-primary">{{$payment->number}}</span> : {{$payment->amount}} , {{$payment->status}}, <form action="/payments/{{$payment->number}}/refund_request" method="POST">{{ method_field('PUT') }}<input type="submit" value="退款" class="btn btn-default" /></form></li>
+<tr>
+<td>
+{{$payment->subscription->agreement_id}} 
+@if ($payment->subscription->agreement_id) 
+<span class="text-danger">{{$payment->subscription->status}}</span>
+@endif
+</td>
+<td><span class="text-primary">{{$payment->number}}</span> </td>
+<td> {{$payment->amount}}</td>
+<td> {{$payment->status}} </td>
+<td>
+@if ($payment->status == 'completed') <form action="/payments/{{$payment->number}}/refund_request" method="POST">{{ method_field('PUT') }}<input type="submit" value="退款" class="btn btn-default" /></form>
+@endif
+@if ($payment->subscription->agreement_id && $payment->subscription->status != 'canceled') 
+<form action="/subscription/{{$payment->subscription->id}}/cancel" method="POST"><input type="submit" value="取消订阅" class="btn btn-default" /></form>
+@endif
+</td>
+</tr>
 @endforeach
-</li>
-
+</table>
                 </div>
             </div>
         </div>
