@@ -21,8 +21,9 @@
     <form action="/pay" method="post">               
       <input type="text" name="plan_name" value="{{$plan->name}}" /> 
       <input type="text" class="text" value="paypal_ec" name="gateway_name"/>
-      <input type="text" class="text" value="1" name="onetime"/>
-      <input type="submit" value="Submit" />
+      <input type="text" class="text" value="0" placeholder="0为循环扣款 1为一次性扣款" name="onetime"/>
+      <input type="text" class="text" value="" placeholder="优惠码" name="coupon"/>
+      <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>  
 </li>
 @endforeach

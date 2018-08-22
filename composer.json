@@ -21,6 +21,7 @@
         "papamonkey/paypal-express-checkout-nvp": "^1.5.1",
         "pheye/payments": "dev-master",
         "pheye/voyager": "dev-master",
+        "spatie/laravel-backup": "^3.0.0",
         "yansongda/pay": "^2.3"
     },
     "require-dev": {

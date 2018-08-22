@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         TCG\Voyager\VoyagerServiceProvider::class,
         Pheye\Payments\PaymentServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
     ],
 
     /*
